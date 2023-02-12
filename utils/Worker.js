@@ -1,4 +1,4 @@
-import Heavy from './workers/heavy';
+
 
 addEventListener('message', (event) =>{
     console.log(event.data);
