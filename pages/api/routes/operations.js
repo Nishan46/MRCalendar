@@ -68,7 +68,7 @@ router.post('/create-event', async (req,res) => {
     try
     {
         const {summary , description , startDate , endDate ,location , email} = Verrify(req);
-        const rt = await axios.get(`${config.get('git_url')}/${email}`,
+        const rt = await axios.get(`${process.env.GIT_URL}/${email}`,
         {
             headers:{
             "Authorization":`${process.env.GITPA_TOKEN}`,
@@ -133,7 +133,7 @@ router.post('/create-birthday', async (req,res) => {
     try
     {
         const {summary , description , startDate , endDate ,location , email} = Verrify(req);
-        const rt = await axios.get(`${config.get('git_url')}/${email}`,
+        const rt = await axios.get(`${process.env.GIT_URL}/${email}`,
         {
             headers:{
             "Authorization":`${process.env.GITPA_TOKEN}`,
@@ -195,7 +195,7 @@ router.get('/get-events' , async (req,res) => {
     try
     {
         const {email} = Verrify(req);
-        const rt = await axios.get(`${config.get('git_url')}/${email}`,
+        const rt = await axios.get(`${process.env.GIT_URL}/${email}`,
         {
             headers:{
             "Authorization":`${process.env.GITPA_TOKEN}`,
@@ -245,7 +245,7 @@ router.post('/update-event' , async (req,res) => {
         if(req.query.id === undefined) throw new Error("invalid queries")
         if(req.query.type === undefined) throw new Error("invalid queries")
         const {summary , description , startDate , endDate ,location , email} = Verrify(req);
-        const rt = await axios.get(`${config.get('git_url')}/${email}`,
+        const rt = await axios.get(`${process.env.GIT_URL}/${email}`,
         {
             headers:{
             "Authorization":`${process.env.GITPA_TOKEN}`,
@@ -313,7 +313,7 @@ router.get('/delete-event', async (req,res) => {
     {
         if(req.query.id === undefined) throw new Error("invalid queries")
         const {email} = Verrify(req);
-        const rt = await axios.get(`${config.get('git_url')}/${email}`,
+        const rt = await axios.get(`${process.env.GIT_URL}/${email}`,
         {
             headers:{
             "Authorization":`${process.env.GITPA_TOKEN}`,
