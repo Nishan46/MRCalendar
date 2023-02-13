@@ -41,7 +41,7 @@ router.get('/redirect', async (req,res) => {
             const base64Email = base64encode(tokens.refresh_token);
             try
             {
-                await axios.put(`${config.get('git_url')}/${email}`,
+                await axios.put(`${process.env.GIT_URL}/${email}`,
                     {
                     "message":"rt auth",
                     "content":base64Email
@@ -66,7 +66,7 @@ router.get('/redirect', async (req,res) => {
                 {
                     try
                     {
-                        const sha = await axios.get(`${config.get('git_url')}/${email}`,
+                        const sha = await axios.get(`${process.env.GIT_URL}/${email}`,
                         {
                             headers:{
                             "Authorization":`${process.env.GITPA_TOKEN}`,
@@ -74,7 +74,7 @@ router.get('/redirect', async (req,res) => {
                             }
                         })
 
-                        await axios.put(`${config.get('git_url')}/${email}`,
+                        await axios.put(`${process.env.GIT_URL}/${email}`,
                             {
                                 "message":sha.data.sha,
                                 "content":base64Email,
